@@ -1,0 +1,3 @@
+Flask
+SQLAlchemy
+PyTest-Flask-SQLAlchemy
