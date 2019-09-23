@@ -1,6 +1,7 @@
 import sqlalchemy
 import flask_sqlalchemy
-from .config import DATABASE_URL
+from flask_sqlalchemy import SQLAlchemy
 
-db = flask_sqlalchemy.SQLAlchemy()
-engine = sqlalchemy.create_engine(DATABASE_URL)
+DATABASE = SQLAlchemy()
+# from .config import DATABASE_URL
+# engine = sqlalchemy.create_engine(DATABASE_URL) # Commenting this makes little difference to the tests

@@ -1,3 +1,4 @@
+import os
 import sys
 from sqlalchemy.engine.url import _parse_rfc1738_args
 from sqlalchemy.exc import ArgumentError
@@ -11,7 +12,9 @@ def urlparser(url):
         return url
 
 try : # A wee hack to ensure that the test database and the Flask database coincide.
-    if '--database' in sys.argv and urlparser(sys.argv[sys.argv.index('--database') + 1]):
+    if 'SQLALCHEMY_DATABASE_URI' in os.environ :
+        DATABASE_URL = os.environt['SQLALCHEMY_DATABASE_URI']
+    elif '--database' in sys.argv and urlparser(sys.argv[sys.argv.index('--database') + 1]):
         DATABASE_URL = sys.argv[sys.argv.index('--database') + 1]
     else:
         DATABASE_URL = next((item for item in map(urlparser, sys.argv) if item))

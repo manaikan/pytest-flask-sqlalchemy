@@ -1,5 +1,6 @@
 import pytest
 from flask_test.manage import create, delete
+from flask_test import create_app
 import flask
 import flask_sqlalchemy
 
@@ -38,8 +39,9 @@ def database(request, database_url):
 @pytest.fixture(scope='session')
 def app(database):
     """Create a Flask app context for the tests."""
-    app = flask.Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = database
+    app = create_app(database)
+    # app = flask.Flask(__name__)
+    # app.config['SQLALCHEMY_DATABASE_URI'] = database
     return app
 
 
@@ -49,7 +51,5 @@ def _db(app):
     Provide the transactional fixtures with access to the database via a Flask-SQLAlchemy
     database connection.
     '''
-    db = flask_sqlalchemy.SQLAlchemy(app=app)
-
-    return db
+    return app.database
 

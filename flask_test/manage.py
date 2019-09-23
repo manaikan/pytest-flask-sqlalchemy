@@ -13,7 +13,7 @@ from sqlalchemy.engine.url import make_url
 #: The SQL commands used to create the schema in different databases
 SCHEMA = {"mssql":"""
 CREATE TABLE [dbo].[table](
-	[id] [int] NOT NULL,
+	[id] [int] NOT NULL IDENTITY(1,1),
 	[name] [nchar](80) NULL,
  CONSTRAINT [PK_table] PRIMARY KEY CLUSTERED 
 (

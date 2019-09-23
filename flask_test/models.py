@@ -1,11 +1,14 @@
-from .database import db
+from .database import DATABASE
 
-class Table(db.Model):
+class Table(DATABASE.Model):
     __tablename__ = 'table'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    id = DATABASE.Column(DATABASE.Integer, primary_key=True)
+    name = DATABASE.Column(DATABASE.String(80))
+
+    # def __init__(self, name):
+    #     self.name = name
 
     def set_name(self, new_name):
         self.name = new_name
-        db.session.add(self)
-        db.session.commit()
+        DATABASE.session.add(self)
+        DATABASE.session.commit()

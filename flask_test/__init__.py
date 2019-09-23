@@ -1,0 +1,1 @@
+from .factory import application as create_app
